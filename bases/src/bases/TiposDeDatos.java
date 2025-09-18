@@ -1,0 +1,51 @@
+package bases;
+
+import java.math.BigDecimal;
+
+public class TiposDeDatos {
+	public static void main(String[] args) {
+		char annio = 'à';
+		
+		System.out.println(annio);
+		
+		int num = 3;
+		
+		double d1 = 0.1;
+		double d2 = 0.2;
+		
+		double suma = d1 + d2;
+		
+		System.out.println(suma);
+		
+		System.out.println("Hola\r\n"
+				+ "Qué tal");
+		
+		System.out.println();
+		
+		System.out.println("""
+				Hola
+				Qué tal
+				""");
+		
+		// double dPrimitivo = null;
+		Double dEncapsulado = null;
+		
+		System.out.println(dEncapsulado);
+		
+		String textoConNumero = "1234";
+		
+		int numero = Integer.parseInt(textoConNumero);
+		
+		System.out.println(numero * 2);
+		
+		BigDecimal bd1 = new BigDecimal("0.1");
+		BigDecimal bd2 = new BigDecimal("0.2");
+		
+		System.out.println(bd1);
+		System.out.println(bd2);
+		
+		BigDecimal bdSuma = bd1.add(bd2);
+		
+		System.out.println(bdSuma);
+	}
+}
