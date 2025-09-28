@@ -1,9 +1,9 @@
 package com.ipartek.citas.accesodatos;
 
 public class AccesoDatosException extends RuntimeException {
-
-	private static final long serialVersionUID = 1936796119227144048L;
 	
+	private static final long serialVersionUID = 802502060149812178L;
+
 	public AccesoDatosException() {
 		super();
 	}
