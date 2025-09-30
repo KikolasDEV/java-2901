@@ -5,7 +5,7 @@ import static com.ipartek.bibliotecas.Consola.*;
 import java.util.Optional;
 
 import com.ipartek.citas.accesodatos.DaoCita;
-import com.ipartek.citas.accesodatos.DaoCitaJdbc;
+import com.ipartek.citas.accesodatos.Fabrica;
 import com.ipartek.citas.entidades.Cita;
 
 public class PresentacionConsola {
@@ -13,7 +13,7 @@ public class PresentacionConsola {
 
 	private static final int SALIR = 0;
 	
-	private static final DaoCita DAO = new DaoCitaJdbc();
+	private static final DaoCita DAO = Fabrica.obtenerDao("jdbc");
 	
 	public static void main(String[] args) {
 		
