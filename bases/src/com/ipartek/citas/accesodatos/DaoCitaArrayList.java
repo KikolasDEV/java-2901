@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Optional;
 
+import com.ipartek.bibliotecas.AccesoDatosException;
 import com.ipartek.citas.entidades.Cita;
 
 public class DaoCitaArrayList implements DaoCita {

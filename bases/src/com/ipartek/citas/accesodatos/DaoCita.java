@@ -1,5 +1,6 @@
 package com.ipartek.citas.accesodatos;
 
+import com.ipartek.bibliotecas.Dao;
 import com.ipartek.citas.entidades.Cita;
 
 public interface DaoCita extends Dao<Cita> {
