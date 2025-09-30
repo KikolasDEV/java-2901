@@ -4,19 +4,18 @@ import static com.ipartek.bibliotecas.Consola.*;
 
 import java.util.Optional;
 
+import com.ipartek.bibliotecas.Fabrica;
 import com.ipartek.citas.accesodatos.DaoCita;
-import com.ipartek.citas.accesodatos.Fabrica;
 import com.ipartek.citas.entidades.Cita;
 
 public class PresentacionConsola {
 	private static final String FORMATO_LINEA = "| %4s | %-20s | %20s | %20s |";
 
 	private static final int SALIR = 0;
-	
-	private static final DaoCita DAO = Fabrica.obtenerDao();
-	
+
+	private static final DaoCita DAO = (DaoCita) Fabrica.obtenerObjeto("dao.cita");
+
 	public static void main(String[] args) {
-		
 		int opcion;
 
 		do {
@@ -24,24 +23,23 @@ public class PresentacionConsola {
 			opcion = elegirOpcion();
 			procesarOpcion(opcion);
 		} while (opcion != SALIR);
-
 	}
 
 	private static void mostrarMenu() {
 		pl("""
-				
+
 				MENU
 				====
-				
+
 				1. Listado
 				2. Buscar por id
 				3. Buscar por texto
 				4. Insertar
 				5. Modificar
 				6. Borrar
-				
+
 				0. Salir
-				
+
 				""");
 	}
 
@@ -50,7 +48,7 @@ public class PresentacionConsola {
 	}
 
 	private static void procesarOpcion(int opcion) {
-		switch(opcion) {
+		switch (opcion) {
 		case 1 -> listado();
 		case 2 -> buscarPorId();
 		case 3 -> buscarPorTexto();
@@ -73,7 +71,7 @@ public class PresentacionConsola {
 
 	private static void buscarPorTexto() {
 		String texto = leerString("Texto");
-		
+
 		mostrarLineaCabecera();
 		DAO.buscarPorTexto(texto).forEach(PresentacionConsola::mostrarLinea);
 	}
@@ -83,7 +81,8 @@ public class PresentacionConsola {
 	}
 
 	private static void modificar() {
-		DAO.modificar(new Cita(leerLong("Id"), leerString("Nombre"), leerLocalDateTime("Inicio"), leerLocalDateTime("Fin")));
+		DAO.modificar(
+				new Cita(leerLong("Id"), leerString("Nombre"), leerLocalDateTime("Inicio"), leerLocalDateTime("Fin")));
 	}
 
 	private static void borrar() {
@@ -97,22 +96,23 @@ public class PresentacionConsola {
 	private static void error(String mensaje) {
 		pl(mensaje);
 	}
-	
+
 	private static void mostrarFicha(Optional<Cita> posibleCita) {
 		posibleCita.ifPresentOrElse(cita -> pfl("""
-				
+
 				Id:     %s
 				Texto:  %s
 				Inicio: %s
 				Fin:    %s
-				
-				""", cita.getId(), cita.getTexto(), cita.getInicio(), cita.getFin()), () -> pl("No se ha encontrado la cita"));
+
+				""", cita.getId(), cita.getTexto(), cita.getInicio(), cita.getFin()),
+				() -> pl("No se ha encontrado la cita"));
 	}
-	
+
 	private static void mostrarLineaCabecera() {
 		pfl(FORMATO_LINEA, "Id", "Texto", "Inicio", "Fin");
 	}
-	
+
 	private static void mostrarLinea(Cita cita) {
 		pfl(FORMATO_LINEA, cita.getId(), cita.getTexto(), cita.getInicio(), cita.getFin());
 	}
