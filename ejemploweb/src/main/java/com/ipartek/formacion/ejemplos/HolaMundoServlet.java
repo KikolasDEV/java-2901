@@ -1,13 +1,12 @@
 package com.ipartek.formacion.ejemplos;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet("/hola")
 public class HolaMundoServlet extends HttpServlet {
@@ -17,7 +16,7 @@ public class HolaMundoServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		
 		String nombre = request.getParameter("nombre"); // http://localhost:8080/ejemploweb/hola?nombre=loquesea
-
+		
 		if(nombre == null) {
 			nombre = "DESCONOCIDO";
 		}
