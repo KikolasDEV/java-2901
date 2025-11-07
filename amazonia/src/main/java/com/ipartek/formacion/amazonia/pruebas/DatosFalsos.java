@@ -14,7 +14,7 @@ import com.ipartek.formacion.amazonia.repositorios.ProductoRepository;
 import com.ipartek.formacion.amazonia.repositorios.UsuarioRepository;
 
 
-@Component
+// @Component
 public class DatosFalsos implements CommandLineRunner {
 	@Autowired
 	private CategoriaRepository categoriaRepository;
