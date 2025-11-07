@@ -30,6 +30,8 @@
 						th:text="${c.nombre}">Informática</a></li>
 				</ul>
 				<ul class="navbar-nav mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link"
+						href="#offcanvasRight" data-bs-toggle="offcanvas">Carrito</a></li>
 					<li class="nav-item" sec:authorize="hasRole('ADMINISTRADOR')"><a
 						class="nav-link" href="admin/index.html" th:href="@{/admin}">Administración</a></li>
 					<li class="navbar-text" sec:authorize="isAuthenticated()"
@@ -48,6 +50,40 @@
 			</div>
 		</div>
 	</nav>
+
+	<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
+		aria-labelledby="offcanvasRightLabel">
+		<div class="offcanvas-header">
+			<h5 class="offcanvas-title" id="offcanvasRightLabel">Carrito</h5>
+			<button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+				aria-label="Close"></button>
+		</div>
+		<div class="offcanvas-body">
+			<table class="table">
+				<thead class="table-secondary">
+					<tr>
+						<th>Producto</th>
+						<th class="text-end">Precio</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="producto: ${carrito.productos}"
+						th:object="${producto}">
+						<td th:text="*{nombre}">Producto</td>
+						<td class="text-end"
+							th:text="${#numbers.formatCurrency(producto.precio)}">Precio</td>
+					</tr>
+				</tbody>
+				<tfoot class="table-secondary">
+					<tr>
+						<td>Total</td>
+						<td class="text-end fw-medium"
+							th:text="${#numbers.formatCurrency(carrito.total)}">Total</td>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+	</div>
 
 	<div th:if="${param.error}"
 		class="alert alert-danger alert-dismissible fade show" role="alert">
