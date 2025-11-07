@@ -7,7 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import com.ipartek.formacion.amazonia.controladores.advices.ComunControllerAdvice;
 import com.ipartek.formacion.amazonia.entidades.Producto;
 import com.ipartek.formacion.amazonia.servicios.AdministradorService;
 
@@ -17,8 +17,14 @@ import jakarta.validation.Valid;
 @RequestMapping("admin")
 public class AdminController {
 
+    private final ComunControllerAdvice comunControllerAdvice;
+
 	@Autowired
 	private AdministradorService administradorService;
+
+    AdminController(ComunControllerAdvice comunControllerAdvice) {
+        this.comunControllerAdvice = comunControllerAdvice;
+    }
 
 	@GetMapping
 	public String index(Model modelo) {
@@ -42,6 +48,8 @@ public class AdminController {
 
 	@PostMapping("producto")
 	public String productoPost(@Valid Producto producto, BindingResult bindingResult, Model modelo) {
+		System.out.println(producto);
+		
 		if (bindingResult.hasErrors()) {
 
 			return "admin/producto";
