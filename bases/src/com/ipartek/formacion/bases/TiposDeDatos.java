@@ -11,7 +11,7 @@ public class TiposDeDatos {
 		
 		System.out.println(annio);
 		
-		int num = 3;
+		// int num = 3;
 		
 		double d1 = 0.1;
 		double d2 = 0.2;
